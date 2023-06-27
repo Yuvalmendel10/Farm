@@ -1,31 +1,30 @@
-import { useState } from "react";
-import "./App.css";
-import kidWithHorse from "./assets/kidhowrse.jpg";
-import IActivity from "./interfaces/IActivity";
-import Activity from "./Components/activity/Activity";
-import { v4 } from "uuid";
+import Home from "./Home";
+import { useNavigate, Routes, Route, Navigate } from "react-router-dom";
+import Birthday from "./Components/pages/Birthday";
+import { useEffect } from "react";
+
+// const navigate = useNavigate();
+
+// useEffect(() => {
+//   console.log("111");
+// }, [name]);
 
 function App() {
-  const [activities, setActivities] = useState<IActivity[]>([
-    {
-      id: v4(),
-      name: "camp",
-      image: kidWithHorse,
-      description: "campDescription",
-    },
-    {
-      id: v4(),
-      name: "ridingTraining",
-      image: kidWithHorse,
-      description: "ridingTrainingDescription",
-    },
-  ]);
-
   return (
-    <div className="activities">
-      {activities.map((activity) => (
-        <Activity activity={activity} />
-      ))}
+    <div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/page" element={<Birthday />} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <h2>404 Page not found</h2>
+            </div>
+          }
+        />
+      </Routes>
     </div>
   );
 }
