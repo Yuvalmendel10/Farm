@@ -33,7 +33,11 @@ function Home() {
     <>
       <div className="activities">
         {activities.map((activity) => (
-          <Activity activity={activity} />
+          <Activity
+            activity={activity}
+            name={activity.name}
+            key={activity.id}
+          />
         ))}
       </div>
     </>

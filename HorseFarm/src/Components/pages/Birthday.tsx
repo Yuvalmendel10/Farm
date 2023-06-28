@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-const App: FC<any> = () => {
+const Birthday: FC<any> = () => {
   return <>hello</>;
 };
 
-export default App;
+export default Birthday;

@@ -1,21 +1,20 @@
 import Home from "./Home";
-import { useNavigate, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Birthday from "./Components/pages/Birthday";
-import { useEffect } from "react";
-
-// const navigate = useNavigate();
-
-// useEffect(() => {
-//   console.log("111");
-// }, [name]);
+import Camp from "./Components/pages/Camp";
+import RidingTraining from "./Components/pages/RidingTraining";
+import NavBar from "./Components/navBar/NavBar";
 
 function App() {
   return (
     <div>
       <Routes>
+        <NavBar />
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/page" element={<Birthday />} />
+        <Route path="/birthdayParty" element={<Birthday />} />
+        <Route path="/camp" element={<Camp />} />
+        <Route path="/ridingTraining" element={<RidingTraining />} />
         <Route
           path="*"
           element={
