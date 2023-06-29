@@ -8,14 +8,19 @@ const resources = {
       ridingTraining: "riding training",
       campDescription: "Join to our new summer camp",
       ridingTrainingDescription: "come and upgrade your abilities",
+      birthdayParty: "birthday party",
+      birthdayDescription:
+        "come and celebrate your birthday with us in the farm",
     },
   },
   he: {
     translation: {
-      camp: "קייטנה",
-      ridingTraining: "אימון ",
+      camp: "קורסים לילדים",
+      ridingTraining: "שיעורי רכיבה ",
       campDescription: "הצטרפו למחנה הקיץ החדש שלנו",
       ridingTrainingDescription: "בואו ושפרו את יכולות הרכיבה שלכם",
+      birthdayParty: " ימי הולדת",
+      birthdayDescription: " בואו ותחגגו איתנו את יום ההולדת שלכם בחווה",
     },
   },
 };
