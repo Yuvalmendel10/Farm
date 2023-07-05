@@ -8,21 +8,22 @@ import NavBar from "./Components/navBar/NavBar";
 function App() {
   return (
     <div>
-      <NavBar />
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/birthdayParty" element={<Birthday />} />
-        <Route path="/camp" element={<Camp />} />
-        <Route path="/ridingTraining" element={<RidingTraining />} />
-        <Route
-          path="*"
-          element={
-            <div>
-              <h2>404 Page not found</h2>
-            </div>
-          }
-        />
+        <Route element={<NavBar />}>
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/birthdayParty" element={<Birthday />} />
+          <Route path="/camp" element={<Camp />} />
+          <Route path="/ridingTraining" element={<RidingTraining />} />
+          <Route
+            path="*"
+            element={
+              <div>
+                <h2>404 Page not found</h2>
+              </div>
+            }
+          />
+        </Route>
       </Routes>
     </div>
   );
