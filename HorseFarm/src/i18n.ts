@@ -11,6 +11,13 @@ const resources = {
       birthdayParty: "birthday party",
       birthdayDescription:
         "come and celebrate your birthday with us in the farm",
+      BialikFarm: "Bialik Farm",
+      Information: "Information",
+      Home: "Home",
+      yourName: "your name",
+      phone: "phone",
+      message: "message",
+      SendMessage: "Send Message",
     },
   },
   he: {
@@ -21,6 +28,13 @@ const resources = {
       ridingTrainingDescription: "בואו ושפרו את יכולות הרכיבה שלכם",
       birthdayParty: " ימי הולדת",
       birthdayDescription: " בואו ותחגגו איתנו את יום ההולדת שלכם בחווה",
+      BialikFarm: "חוות כפר ביאליק",
+      Information: "מידע",
+      Home: "לעוד הבית",
+      yourName: "שם מלא",
+      phone: "מספר טלפון",
+      message: "הודעה לחווה",
+      SendMessage: "שלח",
     },
   },
 };
