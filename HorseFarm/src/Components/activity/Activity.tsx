@@ -1,10 +1,5 @@
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { Card } from "@mui/material";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
 import IActivity from "../../interfaces/IActivity";
 import { useNavigate } from "react-router-dom";
 
@@ -33,33 +28,25 @@ const Activity: FC<Props> = (props: Props) => {
   //       navigate("/fndvjfn");
   //   }
   // };
-
+  //activity
   return (
-    <div className="activities">
-      <Card
+    <div className="">
+      <div
         id={activity.name}
-        className="activity"
-        sx={{ maxWidth: 345 }}
-        //onClick={() => goToPage(name)}
         onClick={() => navigate(`/${name}`)}
+        // onClick={() => goToPage(name)}
+        className="card mb-3 text-white bg-light p-0 border-light activity2 shadow"
       >
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image={activity.image}
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h3" component="div">
-              {t(activity.name)}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {t(activity.description)}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+        <img
+          src={activity.image}
+          className="card-img-top shadow"
+          alt="Card image"
+        />
+        <div className="card-body textcardborder shadow">
+          <h5 className="card-title text-black fw-bold">{t(activity.name)}</h5>
+          <p className="card-text text-black">{t(activity.description)}</p>
+        </div>
+      </div>
     </div>
   );
 };

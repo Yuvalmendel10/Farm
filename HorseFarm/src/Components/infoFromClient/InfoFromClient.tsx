@@ -2,59 +2,169 @@ import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
+type User = {
+  name: string;
+  email: string;
+  phone: number | string;
+  isChecked: boolean;
+};
+
 const InfoFromClient: FC = () => {
   const { t } = useTranslation();
-  const [name, setName] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<number | string>(1);
-  const [message, setMessage] = useState<string>("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
-  const handleUser = (e: any) => {
+  const user: User = {
+    name: "",
+    email: "",
+    phone: "0",
+    isChecked: false,
+  };
+
+  const updateName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
+  const updateEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const updatePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+  };
+
+  const updateConnection = () => {
+    setIsChecked(!user.isChecked);
+  };
+
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(name);
+    user.name = name;
+    user.email = email;
+    user.phone = phone;
+    user.isChecked = isChecked;
+    console.log(JSON.stringify(user));
   };
 
   return (
-    <div className="info">
-      <form method="POST">
-        <div className="mb-3 pt-0">
-          <input
-            type="text"
-            placeholder={t("yourName")}
-            name="name"
-            className="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3 pt-0">
-          <input
-            type="tel"
-            placeholder={t("phone")}
-            name="phone"
-            className="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3 pt-0">
-          <textarea
-            placeholder={t("message")}
-            name="message"
-            className="px-3 py-3 placeholder-gray-400 text-gray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3 pt-0">
-          <button
-            className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            type="submit"
-            onSubmit={handleUser}
-          >
-            {t("SendMessage")}
-          </button>
-        </div>
-      </form>
+    <div className="">
+      <div className="card p-3 border-light shadow mt-4 infoCard">
+        <form onSubmit={handleSubmit} className="inputDesign">
+          <div className="form__group field ">
+            <input
+              type="name"
+              className="form__field"
+              placeholder={t("name")}
+              name="name"
+              id="name"
+              onChange={updateName}
+              required
+            />
+            <label htmlFor="name" className="form__label">
+              {t("name")}
+            </label>
+          </div>
+
+          {/* <div className="form-group row mt-2 mb-2 form__group field">
+              <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
+                {t("name")}
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="name"
+                  className="form-control form__field"
+                  id="inputName"
+                  placeholder={t("name")}
+                  onChange={updateName}
+                  name="user"
+                />
+              </div>
+            </div> */}
+
+          <div className="form__group field">
+            <input
+              type="email"
+              className="form__field"
+              placeholder={t("email")}
+              name="name"
+              id="email"
+              onChange={updateEmail}
+              required
+            />
+            <label htmlFor="email" className="form__label">
+              {t("email")}
+            </label>
+          </div>
+
+          {/* <div className="form-group row mt-2 mb-2">
+              <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
+                {t("email")}
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="inputEmail3"
+                  placeholder={t("email")}
+                  onChange={updateEmail}
+                />
+              </div>
+            </div> */}
+
+          <div className="form__group field mt-2 mb-2 ">
+            <input
+              type="phone"
+              className="form__field"
+              placeholder={t("phoneNumber")}
+              name="name"
+              id="phone"
+              onChange={updatePhone}
+              required
+            />
+            <label htmlFor="phone" className="form__label">
+              {t("phoneNumber")}
+            </label>
+          </div>
+
+          {/* <div className="form-group row mt-2 mb-2">
+              <label htmlFor="inputPhone3" className="col-sm-2 col-form-label">
+                {t("phoneNumber")}
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="phone"
+                  className="form-control"
+                  id="inputPhone3"
+                  placeholder={t("phoneNumber")}
+                  onChange={updatePhone}
+                />
+              </div>
+            </div> */}
+
+          <div className="form-group mt-2 mb-2">
+            <div className="form-check">
+              <input
+                type="checkbox"
+                id="gridCheck1"
+                className="form-check-input"
+                onChange={updateConnection}
+              />
+              <label className="form-check-label" htmlFor="gridCheck1">
+                {t("gettingInfo")}
+              </label>
+            </div>
+          </div>
+          <div className="form-group mt-2 mb-2">
+            <div className="col-sm-10">
+              <button type="submit" className="btn btn-dark">
+                {t("send")}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
