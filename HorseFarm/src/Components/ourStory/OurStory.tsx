@@ -1,12 +1,9 @@
-import { FC, useEffect, useState } from "react";
-import IFarmInfo from "../../interfaces/IFarmInfo";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import farmImage1 from "../../assets/farmImage1.jpg";
 
 const OurStory: FC = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const divStyle = {
     width: "100%",

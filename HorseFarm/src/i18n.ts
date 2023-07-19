@@ -25,7 +25,16 @@ const resources = {
       email:"email",
       phoneNumber:"phone number",
       gettingInfo: "getting info",
-      send: "send"
+      send: "send",
+      orderNow: "order the best aquipment in the best prices",
+      itemName: "item name",
+      toMoreDetails: "to more details",
+      farmTour: "farm Tour",
+      age:"age",
+      description: "description",
+      adminConnect:"admin Connect",
+      meetOurHorses: "meet Our Horses",
+      meetOurFacilities: "meet Our Facilities"
     },
   },
   he: {
@@ -51,6 +60,15 @@ const resources = {
       phoneNumber: "מספר טלפון",
       gettingInfo: "מעוניין בקבלת מידע בטלפון ובאימייל",
       send: "שלח",
+      orderNow: "מוצרי הסוסים הסוסים שתוכלו לקנות בחווה - הטובים ביותר במחירים הטובים ביותר",
+      itemName: "שם המוצר",
+      toMoreDetails: "*על מנת להזמין את הציוד - נא לדבר על משה",
+      farmTour: "לסיור בחווה",
+      age: "גיל",
+      description: "הסבר",
+      adminConnect: "חיבור מנהל",
+      meetOurHorses: "הכירו את הסוסים שלנו",
+      meetOurFacilities: "הכירו את המתקנים שלנו"
     },
   },
 };

@@ -1,10 +1,12 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import horseLogo from "../../assets/horseLogo.png";
+import horseLogo from "../../assets/horseLogo.jpg";
+import Weather from "../weather/Weather";
 
 const NavigationBar: FC = () => {
   const { t } = useTranslation();
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   return (
     <div className="">
@@ -15,8 +17,8 @@ const NavigationBar: FC = () => {
         }}
         className="navbar fixed-top navbar-expand-lg navbar-light bg- px-3"
       >
-        <a className="navbar-brand" href="#">
-          <img src={horseLogo} width="60" height="60" alt="" />
+        <a className="navbar-brand" href="/home">
+          <img src={horseLogo} width="80" height="60" alt="" />
         </a>
         <a className="navbar-brand fw-bold fs-3" href="/">
           {t("BialikFarm")}
@@ -32,6 +34,21 @@ const NavigationBar: FC = () => {
               <a className="nav-link fw-bold fs-5" href="/information">
                 {t("Information")}
               </a>
+            </li>
+            <li className="nav-item">
+              {isAdminLoggedIn ? (
+                <div>
+                  <a className="nav-link fw-bold fs-5" href="/admin">
+                    {t("admin connect")}
+                  </a>
+                </div>
+              ) : (
+                <div>
+                  <a className="nav-link fw-bold fs-5" href="/adminLogin">
+                    {t("adminConnect")}
+                  </a>
+                </div>
+              )}
             </li>
           </ul>
           <a
@@ -94,6 +111,7 @@ const NavigationBar: FC = () => {
               <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z" />
             </svg>
           </a>
+          <Weather />
         </div>
       </nav>
       <Outlet />

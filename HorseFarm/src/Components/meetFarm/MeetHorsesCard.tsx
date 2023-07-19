@@ -1,11 +1,9 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import bialikFarm from "../../assets/bialikFarm.jpg";
 import bialikFarm2 from "../../assets/bialikFarm2.jpg";
-import bialikFarm3 from "../../assets/bialikFarm2.jpg";
-import bialikFarm4 from "../../assets/bialikFarm3.jpg";
-import bialikFarm5 from "../../assets/bialikFarm4.jpg";
+import axios, { AxiosResponse } from "axios";
 
 type Horse = {
   name: string;
@@ -17,18 +15,39 @@ const MeetHorsesCard: FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const [horses, setHorses] = useState<Horse[]>([
+  //   {
+  //     name: "dani",
+  //     age: 15,
+  //     image: bialikFarm,
+  //   },
+  //   {
+  //     name: "yossi",
+  //     age: 21,
+  //     image: bialikFarm2,
+  //   },
+  // ]);
+
   const [horses, setHorses] = useState<Horse[]>([
     {
-      name: "dani",
-      age: 15,
-      image: bialikFarm,
-    },
-    {
-      name: "yossi",
-      age: 21,
-      image: bialikFarm2,
+      name: "",
+      age: 1,
+      image: "",
     },
   ]);
+
+  useEffect(() => {
+    axios
+      .get<Horse>("http://localhost:3000/api/v1/horses")
+      .then((response: AxiosResponse<Horse>) => {
+        const horseData: any = response.data;
+        setHorses(horseData.data.horses);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -44,7 +63,7 @@ const MeetHorsesCard: FC = () => {
 
   return (
     <div>
-      <h1>meet our horses</h1>
+      <h1>{t("meetOurHorses")}</h1>
       <div className="newflex">
         <button
           onClick={() => handlePrevious()}
@@ -59,18 +78,16 @@ const MeetHorsesCard: FC = () => {
         >
           <img
             className="card-img "
-            src={horses[currentIndex].image}
+            src={"http://localhost:3000/" + horses[currentIndex].image}
             alt="Card image "
           />
           <div className="card-img-overlay d-flex justify-content-center shadow">
             <div className="atag ">
               <h5 className="card-title text-dark  fw-bold">
-                {t("name: ")}
-                {t(horses[currentIndex].name)}
+                {t("name")}:{horses[currentIndex].name}
               </h5>
               <h5 className="text-dark fw-bold">
-                {t("age: ")}
-                {horses[currentIndex].age}
+                {t("age")}:{horses[currentIndex].age}
               </h5>
             </div>
           </div>

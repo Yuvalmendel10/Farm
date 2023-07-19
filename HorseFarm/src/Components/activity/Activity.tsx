@@ -5,36 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   activity: IActivity;
-  name: string;
 };
 
 const Activity: FC<Props> = (props: Props) => {
-  const { activity, name } = props;
+  const { activity } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // const goToPage = (name: string) => {
-  //   switch (name) {
-  //     case "capm":
-  //       navigate("/camp");
-  //       break;
-  //     case "ridingTraining":
-  //       navigate("/ridingTraining");
-  //       break;
-  //     case "birthdayParty":
-  //       navigate("/birthdayParty");
-  //       break;
-  //     default:
-  //       navigate("/fndvjfn");
-  //   }
-  // };
-  //activity
   return (
     <div className="">
       <div
         id={activity.name}
-        onClick={() => navigate(`/${name}`)}
-        // onClick={() => goToPage(name)}
+        onClick={() => navigate(`/${activity.name}`)}
         className="card mb-3 text-white bg-light p-0 border-light activity2 shadow"
       >
         <img
