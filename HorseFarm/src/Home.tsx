@@ -1,31 +1,19 @@
-import { useState } from "react";
+import { useState, FC, useEffect } from "react";
 import "./App.css";
 import farmBirthday from "./assets/farmBirthday.jpg";
-import farmImage1 from "./assets/farmImage1.jpg";
 import farmImage2 from "./assets/farmImage2.jpg";
 import farmImage3 from "./assets/farmImage3.jpg";
-import bialikFarm from "./assets/bialikFarm.jpg";
-import bialikFarm2 from "./assets/bialikFarm2.jpg";
-import bialikFarm3 from "./assets/bialikFarm3.jpg";
-import bialikFarm4 from "./assets/bialikFarm4.jpg";
-import bialikFarm5 from "./assets/bialikFarm5.jpg";
+import horseWhiteBackground from "./assets/horseWhiteBackground.jpg";
 import IActivity from "./interfaces/IActivity";
-import IFarmInfo from "./interfaces/IFarmInfo";
 import Activity from "./Components/activity/Activity";
 import { v4 } from "uuid";
 import InfoFromClient from "./Components/infoFromClient/InfoFromClient";
 import MeetFarmCard from "./Components/meetFarm/MeetFarmCard";
 import OurStory from "./Components/ourStory/OurStory";
-import BuyAquipment from "./Components/buyAquipment/BuyAquipment";
+import BuyAquipmentHome from "./Components/buyAquipment/BuyAquipmentHome";
+import ScrollToTop from "./Components/scrollToTop/ScrollToTop";
 
-function Home() {
-  const images = [
-    bialikFarm,
-    bialikFarm2,
-    bialikFarm3,
-    bialikFarm4,
-    bialikFarm5,
-  ];
+const Home: FC = () => {
   const [activities, setActivities] = useState<IActivity[]>([
     {
       id: v4(),
@@ -47,44 +35,51 @@ function Home() {
     },
     {
       id: v4(),
-      name: "lesiur bahava",
+      name: "farmTour",
       image: farmBirthday,
       description: "birthdayDescription",
     },
   ]);
 
-  const [farmInfo, setFarmInfo] = useState<IFarmInfo>({
-    id: v4(),
-    name: "farmInfo",
-    image: images,
-    description: "farmInfoDescription",
-  });
-
   return (
     <div>
-      <div className="grid ">
-        <div className="grid2 ">
+      <ScrollToTop />
+      <div className=" ">
+        <div className="grid2 forMargin">
           {activities.map((activity) => (
-            <Activity
-              activity={activity}
-              name={activity.name}
-              key={activity.id}
-            />
+            <Activity activity={activity} key={activity.id} />
           ))}
         </div>
-        <div className="">
-          <MeetFarmCard farmInfo={farmInfo} name={farmInfo.name} />
-          <InfoFromClient />
+        <div className="horse">
+          🐎
+          {/* <img src={horseWhiteBackground} width="300" height="200" alt="" /> */}
+        </div>
+        <div className="meetFarmCard ">
+          <MeetFarmCard />
         </div>
       </div>
       <div>
         <OurStory />
       </div>
-      <div>
-        <BuyAquipment />
+      <div className="grid3">
+        <div>
+          <BuyAquipmentHome />
+        </div>
+        <div>
+          <InfoFromClient />
+        </div>
+      </div>
+      <div className="horse2">
+        <h3>Click The Horse Or Hit The Tab Key To See Her Run</h3>
+        <img
+          className="horseImg"
+          tabIndex={1}
+          src="http://cliparts.co/cliparts/8Tz/Byj/8TzByjyTp.gif"
+          alt="Running Horse"
+        />
       </div>
     </div>
   );
-}
+};
 
 export default Home;

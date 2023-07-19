@@ -16,12 +16,11 @@ const AquipmentCard: FC<Props> = ({ item }: Props) => {
       <div className="">
         <div
           id={item.id}
-          onClick={() => navigate(`/${name}`)}
           className="card mb-3 text-white bg-light p-0 border-light activity2 shadow"
         >
           <img src={item.image} className="card-img-top " alt="Card image" />
           <div className="card-body textcardborder ">
-            <h5 className="card-title text-black fw-bold">{t(item.name)}</h5>
+            <h5 className="card-title text-black fw-bold">{item.name}</h5>
             <h5 className="card-title text-black fw-bold">
               {`price -   ${item.price}`}
             </h5>

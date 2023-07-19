@@ -1,18 +1,32 @@
 import { FC, useEffect, useState } from "react";
+import { v4 } from "uuid";
 import IFarmInfo from "../../interfaces/IFarmInfo";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import bialikFarm from "../../assets/bialikFarm.jpg";
+import bialikFarm2 from "../../assets/bialikFarm2.jpg";
+import bialikFarm3 from "../../assets/bialikFarm3.jpg";
+import bialikFarm4 from "../../assets/bialikFarm4.jpg";
+import bialikFarm5 from "../../assets/bialikFarm5.jpg";
 
-type Props = {
-  name: string;
-  farmInfo: IFarmInfo;
-};
-
-const MeetFarmCard: FC<Props> = (props: Props) => {
+const MeetFarmCard: FC = () => {
+  const images = [
+    bialikFarm,
+    bialikFarm2,
+    bialikFarm3,
+    bialikFarm4,
+    bialikFarm5,
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { farmInfo, name } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const [farmInfo, setFarmInfo] = useState<IFarmInfo>({
+    id: v4(),
+    name: "farmInfo",
+    image: images,
+    description: "farmInfoDescription",
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,7 +42,7 @@ const MeetFarmCard: FC<Props> = (props: Props) => {
       <div
         id={farmInfo.name}
         className="card text-white bg-dark mb-3 activity p-0 border-light shadow"
-        onClick={() => navigate(`/${name}`)}
+        onClick={() => navigate(`/${farmInfo.name}`)}
       >
         <img
           className="card-img shadow"

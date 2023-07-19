@@ -45,12 +45,12 @@ const InfoFromClient: FC = () => {
     user.email = email;
     user.phone = phone;
     user.isChecked = isChecked;
-    console.log(JSON.stringify(user));
   };
 
   return (
     <div className="">
-      <div className="card p-3 border-light shadow mt-4 infoCard">
+      <div className="card p-3 border-light shadow infoCard">
+        <h4>add your personal details</h4>
         <form onSubmit={handleSubmit} className="inputDesign">
           <div className="form__group field ">
             <input
@@ -67,22 +67,6 @@ const InfoFromClient: FC = () => {
             </label>
           </div>
 
-          {/* <div className="form-group row mt-2 mb-2 form__group field">
-              <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
-                {t("name")}
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="name"
-                  className="form-control form__field"
-                  id="inputName"
-                  placeholder={t("name")}
-                  onChange={updateName}
-                  name="user"
-                />
-              </div>
-            </div> */}
-
           <div className="form__group field">
             <input
               type="email"
@@ -98,21 +82,6 @@ const InfoFromClient: FC = () => {
             </label>
           </div>
 
-          {/* <div className="form-group row mt-2 mb-2">
-              <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
-                {t("email")}
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="inputEmail3"
-                  placeholder={t("email")}
-                  onChange={updateEmail}
-                />
-              </div>
-            </div> */}
-
           <div className="form__group field mt-2 mb-2 ">
             <input
               type="phone"
@@ -127,21 +96,6 @@ const InfoFromClient: FC = () => {
               {t("phoneNumber")}
             </label>
           </div>
-
-          {/* <div className="form-group row mt-2 mb-2">
-              <label htmlFor="inputPhone3" className="col-sm-2 col-form-label">
-                {t("phoneNumber")}
-              </label>
-              <div className="col-sm-10">
-                <input
-                  type="phone"
-                  className="form-control"
-                  id="inputPhone3"
-                  placeholder={t("phoneNumber")}
-                  onChange={updatePhone}
-                />
-              </div>
-            </div> */}
 
           <div className="form-group mt-2 mb-2">
             <div className="form-check">

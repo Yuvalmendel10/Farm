@@ -1,8 +1,9 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import bialikFarm from "../../assets/bialikFarm.jpg";
 import bialikFarm2 from "../../assets/bialikFarm2.jpg";
+import axios, { AxiosResponse } from "axios";
 
 type Facility = {
   name: string;
@@ -16,26 +17,43 @@ const MeetFacilitiesCard: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [facilities, setFacilities] = useState<Facility[]>([
     {
-      name: "emdat rechiva",
-      image: bialikFarm,
-      description: "emdat rechiva",
+      name: "",
+      image: "",
+      description: "",
     },
-    {
-      name: "mitham hasusim",
-      image: bialikFarm2,
-      description: "mitham hasusim",
-    },
-    {
-      name: "mitham eruim",
-      image: bialikFarm2,
-      description: "mitham eruim",
-    },
-    {
-      name: "mitham yeladim",
-      image: bialikFarm2,
-      description: "mitham eruim",
-    },
+    // {
+    //   name: "emdat rechiva",
+    //   image: bialikFarm,
+    //   description: "emdat rechiva",
+    // },
+    // {
+    //   name: "mitham hasusim",
+    //   image: bialikFarm2,
+    //   description: "mitham hasusim",
+    // },
+    // {
+    //   name: "mitham eruim",
+    //   image: bialikFarm2,
+    //   description: "mitham eruim",
+    // },
+    // {
+    //   name: "mitham yeladim",
+    //   image: bialikFarm2,
+    //   description: "mitham eruim",
+    // },
   ]);
+
+  useEffect(() => {
+    axios
+      .get<Facility>("http://localhost:3000/api/v1/facilities")
+      .then((response: AxiosResponse<Facility>) => {
+        const facilitiesData: any = response.data;
+        setFacilities(facilitiesData.data.facilities);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -51,7 +69,7 @@ const MeetFacilitiesCard: FC = () => {
 
   return (
     <div>
-      <h1>meet our facilities</h1>
+      <h1>{t("meetOurFacilities")}</h1>
       <div className="newflex">
         <button
           onClick={() => handlePrevious()}
@@ -66,18 +84,16 @@ const MeetFacilitiesCard: FC = () => {
         >
           <img
             className="card-img "
-            src={facilities[currentIndex].image}
+            src={"http://localhost:3000/" + facilities[currentIndex].image}
             alt="Card image "
           />
           <div className="card-img-overlay d-flex justify-content-center shadow">
             <div className="atag ">
               <h5 className="card-title text-dark  fw-bold">
-                {t("name: ")}
-                {t(facilities[currentIndex].name)}
+                {t("name")}:{facilities[currentIndex].name}
               </h5>
               <h5 className="text-dark fw-bold">
-                {t("description: ")}
-                {t(facilities[currentIndex].description)}
+                {t("description")}:{facilities[currentIndex].description}
               </h5>
             </div>
           </div>

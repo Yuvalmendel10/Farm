@@ -1,6 +1,5 @@
 import { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import "./BuyAquipment.css";
 import IItem from "../../interfaces/IItem";
 import AquipmentCard from "./AquipmentCard";
 import shoes from "../../assets/shoes.jpg";
@@ -40,33 +39,37 @@ const BuyAquipment: FC = () => {
   };
 
   return (
-    <div className="" style={{ height: "800px" }}>
-      <div
-        className="card p-3 border-light shadow mt-4 infoCard"
-        style={{ height: "800px" }}
-      >
-        <div className="inputDesign">
-          <h1>come and order the best horse aquipment in low prices</h1>
-          <div className="form__group field">
-            <input
-              type="input"
-              className="form__field mb-0"
-              placeholder="Name"
-              name="name2"
-              id="name2"
-              onChange={(e) => handlerValue(e)}
-              required
-            />
-            <label htmlFor="name2" className="form__label">
-              Name
-            </label>
-          </div>
+    <div className="p-5 grid4">
+      <div className="inputDesign">
+        <h1>{t("orderNow")}</h1>
+        <div className="form__group field">
+          <input
+            type="input"
+            className="form__field mb-0"
+            placeholder={t("itemName")}
+            name="name2"
+            id="name2"
+            onChange={(e) => handlerValue(e)}
+            required
+          />
+          <label htmlFor="name2" className="form__label">
+            {t("itemName")}
+          </label>
         </div>
-        <div className="gridToAquipment">
-          {updatedAquipment.map((item) => {
+      </div>
+      <div className="gridToAquipment">
+        {updatedAquipment.length !== 0 ? (
+          updatedAquipment.map((item) => {
             return <AquipmentCard key={item.id} item={item} />;
-          })}
-        </div>
+          })
+        ) : (
+          <div className="noItems">
+            <h1>no items found</h1>
+          </div>
+        )}
+      </div>
+      <div>
+        <h5>{t("toMoreDetails")}</h5>
       </div>
     </div>
   );
